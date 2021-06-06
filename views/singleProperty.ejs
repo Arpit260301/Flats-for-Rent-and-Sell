@@ -1,0 +1,120 @@
+<% include partials/header.ejs %>
+
+<style>
+	body{
+		background-color:#282f27;
+	}
+	.delete-form{
+		display: inline;
+	}
+	span{
+		font-size: 1.3em;
+		font-family: 'BioRhyme', serif;
+	}
+	.sahi{
+		color: orange;
+		margin: 10px;
+	}
+	.jumbotron{
+		margin: 10px;
+		padding: 10px;
+		background-color: #847c85;
+		color: white;
+	}
+	h2{
+		font-family: 'B612', sans-serif;
+		color:#2a212e;
+	}
+	span strong{
+		color:#913e3f;
+	}
+</style>
+
+<div class="container" style="color: black;">
+	<div class="row">
+		<div class="col-md-8" style="margin:20px auto;">
+			<div class="thumbnail" style="border:1px solid white; padding:5px; margin:7px; background-color:white;">
+				<img class="img-responsive" src="<%=property["image"] %>" style="height:100%; width:100%;">
+				<div class="caption-full">
+					<div class="jumbotron">
+						<h2><strong>Rent :</strong></h2>
+						<span>₹<%= property["rent"] %></span>
+					</div>
+					<div class="jumbotron">
+						<h2><strong>Address :</strong></h2>
+						<span><%=property.address.line1%>, </span>
+						<span><%=property.address.line2%>, </span>
+						<span><%=property.address.city%>, </span> <br>
+						<span><%=property.address.state%>, </span>
+						<span><%=property.address.zip%></span>
+					</div>
+					<div class="jumbotron">
+						<h2><strong>Owner Details :</strong></h2>
+						<span><%=property.details.fName%> </span>
+						<span><%=property.details.mName%> </span>
+						<span><%=property.details.lName%></span> <br>
+						<span><%=property.details.email%> </span> <br>
+						<span><%=property.details.phone%> </span>
+					</div>
+					<div class="jumbotron">
+						<h2><strong>Property Details :</strong></h2>
+						<ul>
+							<li><span><strong>Property Type</strong> : <%=property.listingType%></span></li>
+							<li><span><strong>Beds</strong> : <%=property.beds%></span></li>
+							<li><span><strong>Baths</strong> : <%=property.baths%></span></li>
+							<li><span><strong>Size</strong> : <%=property.size%></span></li>
+							<li><span><strong>Deposit</strong> : <%=property.deposit%></span></li>
+							<li><span><strong>Available From</strong> : <%=property.date.toDateString()%></span></li>
+							<li><span><strong>Lease Duration</strong> : <%=property.days%> Month</span></li>
+						</ul>
+						
+					</div>
+					<div class="jumbotron ">
+						<p><span><%= property["info"] %></span></p>
+						<p class="pull-right">
+							<em>Posted By </em>:- <strong style="text-transform:uppercase;"><%=property.user.username%></strong>
+						</p>
+						<!-- <a class="btn btn-warning" href="/properties/<%=property['id']%>/edit">Edit</a> -->
+						<form class="delete-form" action="/properties/<%=property['id']%>?_method=DELETE" method="POST">
+							<button class="btn btn-danger">Delete</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="well">
+				<div class="text-right">
+					<a class="btn btn-success" href="/properties/%=property['id']%>/comments/new">Add New Comment</a>
+				</div>
+				<hr>
+				% property.comments.forEach(function(comment){ %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong>%=comment.author.username%></strong>
+							<span class="pull-right">10 days ago</span>
+							<p>
+								%= comment.text %>
+							</p>
+							% if(currentUser && (comment.author.id.equals(currentUser.id))){ %>
+								<a href="/propertys/%=property['id']%>/comments/%=comment['id']%>/edit">
+									<button class="btn btn-xs btn-warning">Edit</button>
+								</a>
+								<form class="delete-form" 		 	action="/propertys/%=property['id']%>/comments/%=comment['id']%>?_method=DELETE" method="POST">
+									<button class="btn btn-xs btn-danger">Delete</button>	
+								</form>
+							% } else if(currentUser && property.author.id.equals(currentUser.id)){ %>
+								<a href="/propertys/%=property['id']%>/comments/%=comment['id']%>/edit">
+									<button class="btn btn-xs btn-warning">Edit</button>
+								</a>
+								<form class="delete-form" 		 	action="/propertys/%=property['id']%>/comments/%=comment['id']%>?_method=DELETE" method="POST">
+									<button class="btn btn-xs btn-danger">Delete</button>	
+								</form>
+							% } %>
+						</div>
+					</div> 
+				% }) %>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+<% include partials/footer.ejs %>

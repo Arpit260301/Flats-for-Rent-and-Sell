@@ -1,0 +1,59 @@
+<% include partials/header.ejs %>
+<div class="container form">
+    <div class="row">
+		<div class="col-md-6" style="padding: 0;">
+			<img src="https://images.unsplash.com/photo-1609766856939-5b5a934af3d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" style="width:100%; height:100%;">
+		</div>
+        <div class="col-md-6" style="padding: 0;">
+            <form class="needs-validation" novalidate action="/signup" method="POST" style="width: 60%; margin: 60px auto;">
+				<div class="row">
+					<div class="col form-group" style="padding-right: 2px;">
+						<input class="form-control" type="text" placeholder="First Name" name="fName" required>
+					</div>
+					<div class="col form-group" style="padding-left: 2px;">
+						<input class="form-control" type="text" placeholder="Last Name" name="lName" required>
+					</div>
+				</div>
+                <div class="form-group">
+                    <input class="form-control" type="email" placeholder="Email" name="email" required>
+					<div class="valid-feedback">
+						Good to go
+					</div>
+					<div class="invalid-feedback">
+						Email is already in use. Try another one.
+					</div>
+                </div>
+				<div class="form-group">
+                    <input class="form-control" type="text" placeholder="Username" name="username" required>
+					<div class="invalid-feedback">
+						Username not available. Try something unique.
+					</div>
+                </div>
+				<div class="form-group">
+                    <input class="form-control" type="tel" pattern="^\d{10}$" placeholder="Mobile" name="mobile" required>
+					<div class="invalid-feedback">
+						Phone Number should be of 10 digits
+					</div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" name="password" required>
+					<div class="invalid-feedback">
+						Atleast 1 Number, 1 UpperCase, 1 LowerCase & 8 or More Characters
+					</div>
+                </div>
+				<div class="form-group">
+                    <input class="form-control" type="password" placeholder="Confirm Password" name="confirm" required>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-sm btn-primary btn-block" style="margin:0; margin-bottom:30px; background-color:#A29160; color:white;">
+						Sign Up
+					</button>
+                </div>
+				<div class="form-group" style="text-align: center;">
+					<p style="padding:0; color:#495057;">Already a Member? <a href="/login">LogIn</a></p>
+				</div>
+            </form> 
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>
